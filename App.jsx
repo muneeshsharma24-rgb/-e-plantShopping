@@ -1,87 +1,66 @@
 
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
 import AboutUs from "./AboutUs";
 import ProductList from "./ProductList";
 import CartItem from "./CartItem";
 import "./App.css";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home");
 
-  const [showProductList, setShowProductList] =
-    useState(false);
+  const handleGetStartedClick = () => {
+    setCurrentPage("plants");
+  };
 
-  const [showCart, setShowCart] = useState(false);
+  const handleContinueShopping = () => {
+    setCurrentPage("plants");
+  };
 
-  const cartItems = useSelector(
-    state => state.cart.items
-  );
+  const handleGoHome = () => {
+    setCurrentPage("home");
+  };
 
-  const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const handleOpenCart = () => {
+    setCurrentPage("cart");
+  };
 
   return (
     <div className="app">
 
-      <nav>
-        <h2>🌿 Paradise Nursery</h2>
-
-        <button onClick={() => {
-          setShowProductList(false);
-          setShowCart(false);
-        }}>
-          Home
-        </button>
-
-        <button onClick={() => {
-          setShowProductList(true);
-          setShowCart(false);
-        }}>
-          Plants
-        </button>
-
-        <button onClick={() => {
-          setShowCart(true);
-          setShowProductList(false);
-        }}>
-          Cart ({totalItems})
-        </button>
-      </nav>
-
-      {!showProductList && !showCart ? (
-
+      {currentPage === "home" && (
         <div className="landing-page">
 
-          <h1>Paradise Nursery</h1>
+          <h1>Welcome to Paradise Nursery</h1>
 
-          <h2>Welcome to Our Plant Shop</h2>
+          <h2>Bring Nature Into Your Home</h2>
 
           <p>
-            Discover beautiful plants for your
-            home and office.
+            Discover beautiful indoor and outdoor plants
+            for your home and office.
           </p>
 
-          <button
-            onClick={() => setShowProductList(true)}
-          >
+          <button onClick={handleGetStartedClick}>
             Get Started
           </button>
 
           <AboutUs />
 
         </div>
+      )}
 
-      ) : showProductList ? (
+      {currentPage === "plants" && (
+        <ProductList
+          onHome={handleGoHome}
+          onCart={handleOpenCart}
+        />
+      )}
 
-        <ProductList />
-
-      ) : (
-
-        <CartItem />
-
+      {currentPage === "cart" && (
+        <CartItem
+          onContinueShopping={handleContinueShopping}
+          onHome={handleGoHome}
+          onCart={handleOpenCart}
+        />
       )}
 
     </div>
