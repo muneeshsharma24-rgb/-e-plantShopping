@@ -1,0 +1,56 @@
+
+.app {
+  min-height: 100vh;
+
+  background-image: url(
+    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1800&q=85"
+  );
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #267747;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #195b34;
+}
+
+.about-us-container {
+  padding: 30px;
+  background-color: white;
+  color: #20352a;
+  text-align: center;
+}
+
+.product-card {
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
